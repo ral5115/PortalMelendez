@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integracion Melendez</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <style>
+
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .modalprocess-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+        }
+
+        /* The Close Button */
+        .close {
+            /*color: #aaaaaa;*/
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+    </style>
+
+</head>
+<body>
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                    </ul>
+                </div>
+            </div>
+        </div>*@
+
+    <div class="container body-content">
+        @RenderBody()
+        <div id="Result" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close" id="close">&times;</span>
+                @ViewBag.Message
+            </div>
+
+        </div>
+
+        <div id="process" class="modal">
+            <!-- Modal content -->
+            <div class="modalprocess-content">
+                <div class="modal-body">
+                    <div class="text-center">
+                        <img src="../images/loading.gif" class="icon" />
+                        <h5><span class="modal-text">Procesando, Espere por favor... </span></h5>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <hr />
+    </div>
+
+
+    @if (ViewBag.showSuccessAlert)
+    {
+        <script>
+            var Alert = document.getElementById('Result');
+            var spanAlert = document.getElementById("close");
+            Alert.style.display = "block";
+
+            spanAlert.onclick = function () {
+                Alert.style.display = "none";
+
+            }
+
+        </script>
+    }
+
+    <script>
+        $("#SelId").change(function () {
+
+            var interfaz = $("#SelId").val();
+
+            if (interfaz == "16" || interfaz == "18" || interfaz == "19" || interfaz == "10" || interfaz == "11" || interfaz == "12" || interfaz == "20" ) {
+                $("#Lotefrgp").hide();
+                $("#Empfrgp").hide();
+            }
+            else {
+                $("#Lotefrgp").show();
+                $("#Empfrgp").show();
+            }
+        });
+        
+        function process()
+        {
+            
+            var process = document.getElementById('process');
+            var fechaini = $("#FechaIni").val();
+            var fechafin = $("#FechaFin").val();
+            var interfaz = $("#SelId").val();
+            var lote = $("#Lote").val();
+            
+            if (fechaini <= fechafin && interfaz != "" && fechafin != "" && fechaini != "") {
+                process.style.display = "block";
+            }
+
+        }
+    </script>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+</body>
+</html>

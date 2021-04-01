@@ -1,0 +1,64 @@
+﻿@model MelendezFront3.Models.Login
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/main.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>    
+</head>
+<body>
+
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <span class="login100-form-title p-b-26">
+                Sistema de Integracion
+            </span>
+
+            @using (Html.BeginForm("login", "Login", FormMethod.Post, new { @class = "login100-form validate-form" }))
+            {
+                <div>
+                    <div class="wrap-input100 validate-input" data-validate="Debe ingresar usuario...">
+                        @Html.TextBoxFor(m => m.User, new { @class = "input100", @placeholder = "Usuario..." })
+                        @Html.ValidationMessageFor(m => m.User, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Ingrese contaseña...">
+                        @Html.PasswordFor(m => m.Pass, new { @class = "input100", @placeholder = "Contraseña..." })
+                        @Html.ValidationMessageFor(m => m.Pass, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <input type="submit" name="Ingresar" value="Entrar" class="login100-form-btn" id="btnLogin" onclick="process()"/>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    
+    <!--===============================================================================================-->
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Scripts/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Scripts/popper.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Scripts/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Scripts/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Scripts/main.js"></script>
+
+</body>
+

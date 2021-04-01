@@ -1,0 +1,166 @@
+﻿@model MelendezFront3.Models.Home
+
+@{
+    /**/
+
+    ViewBag.Title = "Configuracion de ejecucion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Configuracion de ejecucion</h2>
+
+@using (Html.BeginForm("Home", "Login", FormMethod.Post, new { enctype = "multipart/form-data", id = "signupform" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <hr />
+
+        <div class="col-lg-6">
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+            <div class="form-group">
+
+                @Html.LabelFor(model => model.InterfazId, "Interfaz", htmlAttributes: new { })
+                @Html.DropDownListFor(model => model.InterfazId, new SelectList(ViewBag.Interfaces, "Id", "Name"), "Seleccione Interfaz..", htmlAttributes: new { @class = "form-control", @id = "SelId" })
+                @Html.ValidationMessageFor(model => model.InterfazId, "", new { @class = "text-danger" })
+                @Html.Hidden("InterfazId", Model.Interfaz)
+
+            </div>
+
+            <div class="form-group">
+
+                @Html.LabelFor(model => model.FechaIni, htmlAttributes: new { @class = "col-md-3" })
+
+                <div>
+                    @Html.EditorFor(model => model.FechaIni, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FechaIni, "", new { @class = "text-danger" })
+                </div>
+
+                @Html.LabelFor(model => model.FechaFin, htmlAttributes: new { @class = "col-md-3" })
+                <div>
+                    @Html.EditorFor(model => model.FechaFin, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" id="Lotefrgp">
+                @Html.LabelFor(model => model.Lote, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div>
+                    @Html.EditorFor(model => model.Lote, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Lote, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="form-group" id="Empfrgp">
+                    @Html.LabelFor(model => model.Empresa, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-6">
+                        @foreach (var item in Model.Empresa)
+                        {
+                        <div class="col-md-1">
+                            <input type="checkbox" id="@item.Value" name="EmpresaIds" value="@item.Text" />
+                            <label for="optionId">@item.Text</label>
+                        </div>
+
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+            <div class="row">
+                <div class="col-md-10">
+                    <input type="submit" value="Enviar a Siesa" class="btn btn-primary btn-lg btn-block" id="myBtn" onclick="process()" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+}
+
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+<script>
+    
+
+    //$(document).ready(function () {
+    //    $("#signupform").submit(function () {
+
+    //        alert("Prueba");
+    //    });
+    //});
+
+    //$("#signupform").submit();
+    
+
+    //var Alert = document.getElementById('Result');
+    //var spanAlert = document.getElementById("close");
+
+    //Alert.style.display = "block";
+    //// Get the modal
+    //var modal = document.getElementById('Result');
+
+    //// Get the button that opens the modal
+    //var btn = document.getElementById("myBtn");
+
+    //// Get the <span> element that closes the modal
+    //var span = document.getElementsByClassName("close")[0];
+
+    //$(function () {
+    //    $('#signupform').click(function () {
+    //        alert('prueba');
+    //        //if ($(this).valid()) {
+    //        //    alert('the form is valid');
+    //        //}
+    //    });
+    //});
+
+    // When the user clicks the button, open the modal
+    //btn.onclick = function () {
+
+    //    alert("prueba");
+
+    //    //if (isValid == true) {
+    //    //    modal.style.display = "block";
+
+    //    //    var elem = document.getElementById("myBar");
+    //    //    var width = 50;
+    //    //    var id = setInterval(frame, 50);
+    //    //    function frame() {
+    //    //        if (width >= 100) {
+    //    //            clearInterval(id);
+    //    //        } else {
+    //    //            width++;
+    //    //            elem.style.width = width + '%';
+    //    //            elem.innerHTML = width * 1 + '%';
+    //    //        }
+    //    //    }
+    //    //}
+
+    //}
+
+
+    //// When the user clicks on <span> (x), close the modal
+    //span.onclick = function () {
+    //    modal.style.display = "none";
+
+    //}
+
+
+
+
+</script>
+
+
